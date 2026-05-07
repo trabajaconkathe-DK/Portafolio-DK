@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio | Artista Multidisciplinaria</title>
+    <title>Kathe | Artista Multidisciplinaria</title>
     <style>
         /* ===== TODOS LOS ESTILOS ===== */
         * {
@@ -271,6 +271,46 @@
             margin: 2rem 0;
         }
 
+        .contacto-info p {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .contacto-info a {
+            color: #e67e22;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contacto-info a:hover {
+            color: #d35400;
+            text-decoration: underline;
+        }
+
+        .redes-sociales {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .redes-sociales a {
+            background: #1a1a1a;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .redes-sociales a:hover {
+            background: #e67e22;
+            transform: scale(1.05);
+        }
+
         footer {
             background: #1a1a1a;
             color: #aaa;
@@ -283,6 +323,7 @@
             .menu a { font-size: 0.75rem; }
             h1 { font-size: 1.5rem; }
             .galeria { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .redes-sociales { flex-direction: column; align-items: center; gap: 1rem; }
         }
     </style>
 </head>
@@ -337,15 +378,16 @@
         </div>
     </div>
 
-    <!-- SECCIONES -->
+    <!-- SECCIÓN INICIO -->
     <div id="inicio" class="seccion activa">
         <div class="container">
-            <h1>Artista Llanera Multidisciplinaria</h1>
+            <h1>Kathe | Artista Llanera Multidisciplinaria</h1>
             <p>Dibujo, pinto, modelo, me maquillo, grabo y edito – todo para representarme a mí misma.</p>
             <div id="galeriaInicio" class="galeria"></div>
         </div>
     </div>
 
+    <!-- SECCIÓN DIBUJO -->
     <div id="dibujo" class="seccion">
         <div class="container">
             <h1>Dibujo Tradicional</h1>
@@ -355,6 +397,7 @@
         </div>
     </div>
 
+    <!-- SECCIÓN ESCULTURA -->
     <div id="escultura" class="seccion">
         <div class="container">
             <h1>Escultura en Arcilla – Fauna Llanera</h1>
@@ -362,6 +405,7 @@
         </div>
     </div>
 
+    <!-- SECCIÓN MAQUILLAJE -->
     <div id="maquillaje" class="seccion">
         <div class="container">
             <h1>Maquillaje y Modelaje</h1>
@@ -376,6 +420,7 @@
         </div>
     </div>
 
+    <!-- SECCIÓN VIDEO -->
     <div id="video" class="seccion">
         <div class="container">
             <h1>Edición de Video</h1>
@@ -384,35 +429,54 @@
                     <source src="" type="video/mp4">
                 </video>
                 <div id="adminVideoPanel" style="margin-top:1rem; display:none">
-                    <button onclick="subirVideoLocal()" style="background:#e67e22; color:white; border:none; padding:0.5rem 1rem; border-radius:6px">🎥 Subir mi video desde PC</button>
+                    <button onclick="subirVideoLocal()" style="background:#e67e22; color:white; border:none; padding:0.5rem 1rem; border-radius:6px; cursor:pointer">🎥 Subir mi video desde PC</button>
                     <input type="file" id="inputVideo" accept="video/mp4" style="display:none" onchange="cargarVideoLocal(event)">
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- SECCIÓN SOBRE MÍ -->
     <div id="sobre" class="seccion">
         <div class="container">
             <h1>Sobre mí</h1>
-            <div class="perfil-texto" id="textoSobreMi">
-                <p><strong>Me llamo [Tu nombre]</strong>. Soy artista llanera. Todo lo que hago es representarme a mí misma.</p>
+            <div class="perfil-texto">
+                <p><strong>✨ ¡Hola! Soy Kathe ✨</strong></p>
+                <p>Soy artista llanera multidisciplinaria. Todo lo que hago –dibujar, pintar con acrílico y esfero, modelar arcilla, maquillarme, grabar y editar– es una forma de representarme a mí misma. <strong>Yo soy mi propio personaje</strong>.</p>
+                <p>Mis esculturas hablan de mi tierra: el chiguiro, el águila arpía, el caimán, el combrero. Mis ilustraciones digitales y dibujos son mi esencia vivida y con color. Me maquillo para transformarme y para vestir marcas sin etiquetas.</p>
+                <p>📩 <strong>¿Trabajamos junt@s?</strong> Escríbeme y hablemos de tu proyecto.</p>
             </div>
         </div>
     </div>
 
+    <!-- SECCIÓN CONTACTO -->
     <div id="contacto" class="seccion">
         <div class="container">
             <h1>Contacto</h1>
+            
             <div class="contacto-info">
-                <p>📧 <a href="mailto:tucorreo@ejemplo.com">tucorreo@ejemplo.com</a></p>
-                <p>📷 Instagram: <a href="#">@tusuario</a></p>
+                <p>📧 <a href="mailto:trabajaconkathe@gmail.com">trabajaconkathe@gmail.com</a></p>
+                <p>📱 <a href="tel:+573213795430">+57 321 3795430</a></p>
+            </div>
+
+            <div class="redes-sociales">
+                <a href="https://www.instagram.com/kaze_imo/" target="_blank">
+                    📷 Instagram
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100080913762913" target="_blank">
+                    📘 Facebook
+                </a>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem; color: #666;">
+                <p>💬 ¿Prefieres que te contacte yo? Déjame un mensaje directo en redes.</p>
             </div>
         </div>
     </div>
 </main>
 
 <footer>
-    <p>© 2024 - Todos los derechos reservados</p>
+    <p>© 2025 Kathe | Artista Multidisciplinaria</p>
 </footer>
 
 <script>
@@ -528,9 +592,8 @@
             if (video) {
                 video.src = videoURL;
                 document.getElementById('videoPrincipal').load();
-                mostrarMensajeAdmin("✅ Video cargado correctamente (se mantendrá hasta que recargues la página)", "#27ae60");
+                mostrarMensajeAdmin("✅ Video cargado correctamente", "#27ae60");
                 
-                // Guardar en localStorage
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     localStorage.setItem('videoPortafolio', e.target.result);
@@ -693,7 +756,7 @@
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'portafolio-backup.json';
+        a.download = 'portafolio-kathe-backup.json';
         a.click();
         URL.revokeObjectURL(url);
         mostrarMensajeAdmin("💾 Respaldo guardado", "#27ae60");
