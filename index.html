@@ -42,7 +42,6 @@
             padding: 0 20px;
         }
 
-        /* ===== MENÚ ===== */
         header {
             background-color: #1a1a1a;
             color: white;
@@ -72,7 +71,6 @@
             color: #e67e22;
         }
 
-        /* ===== SECCIONES ===== */
         .seccion {
             display: none;
             padding: 2rem 0;
@@ -82,7 +80,6 @@
             display: block;
         }
 
-        /* ===== GALERÍAS ===== */
         .galeria {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -128,7 +125,6 @@
             font-size: 0.8rem;
         }
 
-        /* ===== BOTONES DE EDICIÓN ===== */
         .admin-botones {
             position: absolute;
             top: 10px;
@@ -146,18 +142,11 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 12px;
-            transition: background 0.3s;
         }
 
-        .btn-editar:hover {
-            background: #e67e22;
-        }
+        .btn-editar:hover { background: #e67e22; }
+        .btn-eliminar:hover { background: #e74c3c; }
 
-        .btn-eliminar:hover {
-            background: #e74c3c;
-        }
-
-        /* ===== PANEL DE ADMINISTRACIÓN ===== */
         .admin-panel {
             background: #2c3e50;
             color: white;
@@ -184,7 +173,7 @@
             margin-bottom: 1rem;
         }
 
-        .admin-barra input, .admin-barra textarea, .admin-barra select {
+        .admin-barra select, .admin-barra input {
             padding: 0.5rem;
             border-radius: 6px;
             border: none;
@@ -203,6 +192,46 @@
             background: #d35400;
         }
 
+        .form-agregar {
+            background: #34495e;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .form-agregar.visible {
+            display: block;
+        }
+
+        .form-agregar input, .form-agregar textarea {
+            width: 100%;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: none;
+        }
+
+        .area-subir {
+            border: 2px dashed #e67e22;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .area-subir:hover {
+            background: rgba(230,126,34,0.2);
+        }
+
+        .vista-previa {
+            max-width: 200px;
+            max-height: 150px;
+            margin: 0.5rem auto;
+            display: none;
+        }
+
         .admin-mensaje {
             background: #27ae60;
             color: white;
@@ -212,34 +241,14 @@
             display: none;
         }
 
-        /* ===== FORMULARIO AGREGAR IMAGEN ===== */
-        .form-agregar {
-            background: #34495e;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-
-        .form-agregar input, .form-agregar textarea {
-            width: 100%;
-            margin-bottom: 0.5rem;
-        }
-
-        /* ===== ORDEN ARRASTRABLE ===== */
         .foto.draggable {
             cursor: grab;
         }
 
-        .foto.draggable:active {
-            cursor: grabbing;
-        }
-
         .foto.drag-over {
             border: 2px dashed #e67e22;
-            transform: scale(1.02);
         }
 
-        /* ===== VIDEO ===== */
         .video-container {
             margin: 2rem 0;
             text-align: center;
@@ -250,25 +259,16 @@
             border-radius: 12px;
         }
 
-        /* ===== SOBRE MÍ ===== */
         .perfil-texto {
             background: white;
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             margin: 2rem 0;
-            line-height: 1.8;
         }
 
-        /* ===== CONTACTO ===== */
         .contacto-info {
             text-align: center;
             margin: 2rem 0;
-        }
-
-        .contacto-info a {
-            color: #e67e22;
-            text-decoration: none;
         }
 
         footer {
@@ -280,19 +280,9 @@
         }
 
         @media (max-width: 768px) {
-            .menu {
-                gap: 0.5rem;
-            }
-            .menu a {
-                font-size: 0.75rem;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-            .galeria {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 1rem;
-            }
+            .menu a { font-size: 0.75rem; }
+            h1 { font-size: 1.5rem; }
+            .galeria { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
         }
     </style>
 </head>
@@ -313,28 +303,41 @@
 </header>
 
 <main>
-    <!-- ==================== PANEL DE ADMINISTRACIÓN ==================== -->
     <div id="adminPanel" class="admin-panel">
         <div class="container">
             <h3>🔧 MODO EDICIÓN</h3>
             <div class="admin-barra">
-                <span>📁 Selecciona categoría:</span>
                 <select id="categoriaSelect">
-                    <option value="tradicional">Dibujo Tradicional</option>
-                    <option value="digital">Ilustración Digital</option>
-                    <option value="escultura">Escultura</option>
-                    <option value="maquillajeArtistico">Maquillaje Artístico</option>
-                    <option value="genderless">Genderless / Unlabelled</option>
+                    <option value="tradicional">📐 Dibujo Tradicional</option>
+                    <option value="digital">💻 Ilustración Digital</option>
+                    <option value="escultura">🏺 Escultura</option>
+                    <option value="maquillajeArtistico">🎨 Maquillaje Artístico</option>
+                    <option value="genderless">👗 Genderless / Unlabelled</option>
                 </select>
-                <button onclick="abrirFormularioAgregar()">+ Agregar nueva imagen</button>
-                <button onclick="exportarDatos()" style="background:#27ae60">💾 Guardar copia</button>
-                <button onclick="importarDatos()" style="background:#2980b9">📂 Cargar copia</button>
+                <button onclick="toggleFormulario()">➕ Agregar imagen desde mi PC</button>
+                <button onclick="exportarDatos()">💾 Guardar copia de seguridad</button>
+                <button onclick="importarDatos()">📂 Cargar copia guardada</button>
             </div>
+            
+            <div id="formAgregar" class="form-agregar">
+                <h4>📤 Subir imagen desde tu computadora</h4>
+                <div id="areaSubir" class="area-subir" onclick="document.getElementById('inputImagen').click()">
+                    📸 Haz clic aquí para seleccionar una imagen de tu PC
+                    <br><small>(JPG, PNG, GIF - máximo 10MB)</small>
+                </div>
+                <input type="file" id="inputImagen" accept="image/*" style="display:none" onchange="previsualizarImagen(event)">
+                <img id="vistaPrevia" class="vista-previa" alt="Vista previa">
+                <input type="text" id="nuevoTitulo" placeholder="Título de la obra (ej: Chiguiro)">
+                <textarea id="nuevaTecnica" placeholder="Técnica / materiales (ej: Arcilla modelada a mano)" rows="2"></textarea>
+                <button onclick="guardarImagenSubida()">✅ Guardar obra</button>
+                <button onclick="toggleFormulario()">❌ Cancelar</button>
+            </div>
+            
             <div id="adminMensaje" class="admin-mensaje"></div>
         </div>
     </div>
 
-    <!-- ==================== SECCIÓN INICIO ==================== -->
+    <!-- SECCIONES -->
     <div id="inicio" class="seccion activa">
         <div class="container">
             <h1>Artista Llanera Multidisciplinaria</h1>
@@ -343,7 +346,6 @@
         </div>
     </div>
 
-    <!-- ==================== SECCIÓN DIBUJO ==================== -->
     <div id="dibujo" class="seccion">
         <div class="container">
             <h1>Dibujo Tradicional</h1>
@@ -353,62 +355,57 @@
         </div>
     </div>
 
-    <!-- ==================== SECCIÓN ESCULTURA ==================== -->
     <div id="escultura" class="seccion">
         <div class="container">
             <h1>Escultura en Arcilla – Fauna Llanera</h1>
-            <p>Figuras inspiradas en mi cultura</p>
             <div id="galeriaEscultura" class="galeria"></div>
         </div>
     </div>
 
-    <!-- ==================== SECCIÓN MAQUILLAJE ==================== -->
     <div id="maquillaje" class="seccion">
         <div class="container">
             <h1>Maquillaje y Modelaje</h1>
-            <div class="bloque-sesion">
+            <div class="bloque-sesion" style="margin:2rem 0; padding:1rem; background:#f5f5f5; border-radius:12px">
                 <h3>🎨 Maquillaje artístico</h3>
                 <div id="galeriaMaquillajeArtistico" class="galeria"></div>
             </div>
-            <div class="bloque-sesion">
+            <div class="bloque-sesion" style="margin:2rem 0; padding:1rem; background:#f5f5f5; border-radius:12px">
                 <h3>👗 Genderless / Unlabelled</h3>
                 <div id="galeriaGenderless" class="galeria"></div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== SECCIÓN VIDEO ==================== -->
     <div id="video" class="seccion">
         <div class="container">
             <h1>Edición de Video</h1>
             <div class="video-container">
-                <video id="videoPrincipal" controls poster="images/video-thumbnail.jpg" width="100%">
-                    <source src="video/comercial-retencion.mp4" type="video/mp4">
+                <video id="videoPrincipal" controls width="100%">
+                    <source src="" type="video/mp4">
                 </video>
-            </div>
-            <div class="perfil-texto">
-                <p><strong>Proyecto comercial pagado:</strong> Grabación y edición completa.</p>
+                <div id="adminVideoPanel" style="margin-top:1rem; display:none">
+                    <button onclick="subirVideoLocal()" style="background:#e67e22; color:white; border:none; padding:0.5rem 1rem; border-radius:6px">🎥 Subir mi video desde PC</button>
+                    <input type="file" id="inputVideo" accept="video/mp4" style="display:none" onchange="cargarVideoLocal(event)">
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== SECCIÓN SOBRE MÍ ==================== -->
     <div id="sobre" class="seccion">
         <div class="container">
-            <h1>Sobre mí – Mi representación</h1>
+            <h1>Sobre mí</h1>
             <div class="perfil-texto" id="textoSobreMi">
                 <p><strong>Me llamo [Tu nombre]</strong>. Soy artista llanera. Todo lo que hago es representarme a mí misma.</p>
             </div>
         </div>
     </div>
 
-    <!-- ==================== SECCIÓN CONTACTO ==================== -->
     <div id="contacto" class="seccion">
         <div class="container">
             <h1>Contacto</h1>
             <div class="contacto-info">
                 <p>📧 <a href="mailto:tucorreo@ejemplo.com">tucorreo@ejemplo.com</a></p>
-                <p>📷 Instagram: <a href="https://instagram.com/tuusuario">@tusuario</a></p>
+                <p>📷 Instagram: <a href="#">@tusuario</a></p>
             </div>
         </div>
     </div>
@@ -419,32 +416,20 @@
 </footer>
 
 <script>
-    // ========== DATOS INICIALES (ejemplos) ==========
+    // ========== DATOS INICIALES ==========
     let datosPortafolio = {
-        tradicional: [
-            { id: "t1", img: "https://placehold.co/600x800/fff1e6/e67e22?text=Dibujo+1", titulo: "Boceto a lápiz", tecnica: "Lápiz sobre papel" },
-            { id: "t2", img: "https://placehold.co/600x700/fff1e6/e67e22?text=Acrílico+y+Esfero", titulo: "Exploración", tecnica: "Acrílico y esfero" }
-        ],
-        digital: [
-            { id: "d1", img: "https://placehold.co/600x600/f0e6ff/e67e22?text=Mi+Personaje+1", titulo: "Mi personaje", tecnica: "Krita - Digital" },
-            { id: "d2", img: "https://placehold.co/600x600/f0e6ff/e67e22?text=Mi+Personaje+2", titulo: "Esencia", tecnica: "Krita - Digital" }
-        ],
-        escultura: [
-            { id: "e1", img: "https://placehold.co/600x500/e8f5e9/e67e22?text=Chiguiro", titulo: "Chiguiro", tecnica: "Arcilla modelada" },
-            { id: "e2", img: "https://placehold.co/600x600/e8f5e9/e67e22?text=Águila+Arpía", titulo: "Águila Arpía", tecnica: "Arcilla y acrílico" }
-        ],
-        maquillajeArtistico: [
-            { id: "m1", img: "https://placehold.co/600x600/fce4ec/e67e22?text=Maquillaje+1", titulo: "Transformación", tecnica: "Maquillaje artístico" }
-        ],
-        genderless: [
-            { id: "g1", img: "https://placehold.co/600x800/e8eaf6/e67e22?text=Genderless+1", titulo: "Genderless", tecnica: "Moda sin etiquetas" }
-        ]
+        tradicional: [],
+        digital: [],
+        escultura: [],
+        maquillajeArtistico: [],
+        genderless: []
     };
 
     let esAdmin = false;
+    let imagenSeleccionadaBase64 = null;
     let elementoArrastrado = null;
 
-    // ========== GUARDAR EN LOCALSTORAGE ==========
+    // ========== CARGAR/GUARDAR ==========
     function guardarDatos() {
         localStorage.setItem('portafolioArtista', JSON.stringify(datosPortafolio));
     }
@@ -453,17 +438,124 @@
         const guardado = localStorage.getItem('portafolioArtista');
         if (guardado) {
             datosPortafolio = JSON.parse(guardado);
+        } else {
+            // Datos de ejemplo
+            datosPortafolio = {
+                tradicional: [
+                    { id: "t1", img: "https://placehold.co/600x800/fff1e6/e67e22?text=Tradicional+1", titulo: "Boceto a lápiz", tecnica: "Lápiz sobre papel" }
+                ],
+                digital: [
+                    { id: "d1", img: "https://placehold.co/600x600/f0e6ff/e67e22?text=Digital+1", titulo: "Mi personaje", tecnica: "Krita" }
+                ],
+                escultura: [
+                    { id: "e1", img: "https://placehold.co/600x500/e8f5e9/e67e22?text=Chiguiro", titulo: "Chiguiro", tecnica: "Arcilla" }
+                ],
+                maquillajeArtistico: [
+                    { id: "m1", img: "https://placehold.co/600x600/fce4ec/e67e22?text=Maquillaje", titulo: "Arte facial", tecnica: "Maquillaje artístico" }
+                ],
+                genderless: []
+            };
         }
         renderizarTodasLasGalarias();
     }
 
-    // ========== RENDERIZAR GALERÍAS ==========
+    // ========== PREVISUALIZAR IMAGEN LOCAL ==========
+    function previsualizarImagen(event) {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagenSeleccionadaBase64 = e.target.result;
+                const vistaPrevia = document.getElementById('vistaPrevia');
+                vistaPrevia.src = imagenSeleccionadaBase64;
+                vistaPrevia.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function toggleFormulario() {
+        const form = document.getElementById('formAgregar');
+        form.classList.toggle('visible');
+        if (!form.classList.contains('visible')) {
+            document.getElementById('inputImagen').value = '';
+            document.getElementById('vistaPrevia').style.display = 'none';
+            document.getElementById('nuevoTitulo').value = '';
+            document.getElementById('nuevaTecnica').value = '';
+            imagenSeleccionadaBase64 = null;
+        }
+    }
+
+    function guardarImagenSubida() {
+        if (!imagenSeleccionadaBase64) {
+            mostrarMensajeAdmin("❌ Por favor selecciona una imagen primero", "#e74c3c");
+            return;
+        }
+        
+        const categoria = document.getElementById('categoriaSelect').value;
+        const titulo = document.getElementById('nuevoTitulo').value.trim();
+        const tecnica = document.getElementById('nuevaTecnica').value.trim();
+        
+        if (!titulo) {
+            mostrarMensajeAdmin("❌ Escribe un título para la obra", "#e74c3c");
+            return;
+        }
+        
+        const nuevaObra = {
+            id: categoria + '_' + Date.now(),
+            img: imagenSeleccionadaBase64,
+            titulo: titulo,
+            tecnica: tecnica || "Técnica no especificada"
+        };
+        
+        datosPortafolio[categoria].push(nuevaObra);
+        guardarDatos();
+        renderizarTodasLasGalarias();
+        toggleFormulario();
+        mostrarMensajeAdmin("✅ Obra agregada correctamente", "#27ae60");
+    }
+
+    // ========== SUBIR VIDEO LOCAL ==========
+    function subirVideoLocal() {
+        document.getElementById('inputVideo').click();
+    }
+
+    function cargarVideoLocal(event) {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith('video/')) {
+            const videoURL = URL.createObjectURL(file);
+            const video = document.querySelector('#videoPrincipal source');
+            if (video) {
+                video.src = videoURL;
+                document.getElementById('videoPrincipal').load();
+                mostrarMensajeAdmin("✅ Video cargado correctamente (se mantendrá hasta que recargues la página)", "#27ae60");
+                
+                // Guardar en localStorage
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('videoPortafolio', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    }
+
+    function cargarVideoGuardado() {
+        const videoGuardado = localStorage.getItem('videoPortafolio');
+        if (videoGuardado) {
+            const video = document.querySelector('#videoPrincipal source');
+            video.src = videoGuardado;
+            document.getElementById('videoPrincipal').load();
+        }
+    }
+
+    // ========== RENDERIZAR ==========
     function renderizarGaleria(contenedorId, items, categoria, esAdminActual) {
         const contenedor = document.getElementById(contenedorId);
         if (!contenedor) return;
         
         if (!items || items.length === 0) {
-            contenedor.innerHTML = '<p style="text-align:center; color:#999;">No hay obras aún. Agrega desde el panel de edición.</p>';
+            contenedor.innerHTML = '<p style="text-align:center; color:#999;">📭 No hay obras aún. Ve al modo edición y agrega tus imágenes.</p>';
             return;
         }
         
@@ -490,8 +582,7 @@
         if (esAdminActual) {
             configurarDragAndDrop(contenedorId, categoria);
         }
-        
-        configurarLightboxEnGaleria(contenedor);
+        configurarLightbox(contenedor);
     }
     
     function renderizarTodasLasGalarias() {
@@ -501,50 +592,42 @@
         renderizarGaleria('galeriaMaquillajeArtistico', datosPortafolio.maquillajeArtistico, 'maquillajeArtistico', esAdmin);
         renderizarGaleria('galeriaGenderless', datosPortafolio.genderless, 'genderless', esAdmin);
         
-        // Inicio - mostrar últimas 4 obras
-        const todasLasObras = [
+        const todas = [
             ...datosPortafolio.tradicional.slice(0,2),
             ...datosPortafolio.digital.slice(0,1),
             ...datosPortafolio.escultura.slice(0,1)
         ];
-        renderizarGaleria('galeriaInicio', todasLasObras, 'inicio', false);
+        renderizarGaleria('galeriaInicio', todas, 'inicio', false);
     }
     
-    // ========== DRAG AND DROP PARA REORDENAR ==========
+    // ========== DRAG & DROP ==========
     function configurarDragAndDrop(contenedorId, categoria) {
         const contenedor = document.getElementById(contenedorId);
         if (!contenedor) return;
         
         const items = contenedor.querySelectorAll('.foto');
-        
         items.forEach(item => {
+            item.setAttribute('draggable', 'true');
             item.addEventListener('dragstart', (e) => {
                 elementoArrastrado = item;
                 e.dataTransfer.setData('text/plain', '');
                 item.style.opacity = '0.5';
             });
-            
             item.addEventListener('dragend', () => {
                 elementoArrastrado = null;
                 item.style.opacity = '1';
                 items.forEach(i => i.classList.remove('drag-over'));
             });
-            
             item.addEventListener('dragover', (e) => {
                 e.preventDefault();
                 if (elementoArrastrado && elementoArrastrado !== item) {
                     item.classList.add('drag-over');
                 }
             });
-            
-            item.addEventListener('dragleave', () => {
-                item.classList.remove('drag-over');
-            });
-            
+            item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
             item.addEventListener('drop', (e) => {
                 e.preventDefault();
                 item.classList.remove('drag-over');
-                
                 if (!elementoArrastrado || elementoArrastrado === item) return;
                 
                 const contenedorPadre = elementoArrastrado.parentNode;
@@ -578,30 +661,7 @@
         }
     }
     
-    // ========== AGREGAR, EDITAR, ELIMINAR ==========
-    function abrirFormularioAgregar() {
-        const categoria = document.getElementById('categoriaSelect').value;
-        const nuevoId = categoria + '_' + Date.now();
-        
-        const urlImagen = prompt("📷 PEGA LA URL DE TU IMAGEN (puedes usar imgur.com o subirla a GitHub):\n\nSi aún no la tienes, usa un placeholder");
-        if (!urlImagen) return;
-        
-        const titulo = prompt("✏️ Título de la obra:");
-        const tecnica = prompt("🎨 Técnica / materiales:");
-        
-        const nuevaObra = {
-            id: nuevoId,
-            img: urlImagen,
-            titulo: titulo || "Sin título",
-            tecnica: tecnica || "Técnica no especificada"
-        };
-        
-        datosPortafolio[categoria].push(nuevaObra);
-        guardarDatos();
-        renderizarTodasLasGalarias();
-        mostrarMensajeAdmin("✅ Obra agregada correctamente", "#27ae60");
-    }
-    
+    // ========== EDITAR Y ELIMINAR ==========
     function editarImagen(categoria, id) {
         const obra = datosPortafolio[categoria].find(o => o.id === id);
         if (!obra) return;
@@ -611,9 +671,6 @@
         
         const nuevaTecnica = prompt("Editar técnica:", obra.tecnica);
         if (nuevaTecnica !== null) obra.tecnica = nuevaTecnica || "";
-        
-        const nuevaImg = prompt("Nueva URL de imagen (deja vacío para no cambiar):", obra.img);
-        if (nuevaImg && nuevaImg.trim()) obra.img = nuevaImg.trim();
         
         guardarDatos();
         renderizarTodasLasGalarias();
@@ -629,7 +686,7 @@
         }
     }
     
-    // ========== EXPORTAR E IMPORTAR ==========
+    // ========== EXPORTAR/IMPORTAR ==========
     function exportarDatos() {
         const datosStr = JSON.stringify(datosPortafolio, null, 2);
         const blob = new Blob([datosStr], {type: 'application/json'});
@@ -665,20 +722,8 @@
         input.click();
     }
     
-    function mostrarMensajeAdmin(mensaje, color) {
-        const msgDiv = document.getElementById('adminMensaje');
-        if (msgDiv) {
-            msgDiv.textContent = mensaje;
-            msgDiv.style.backgroundColor = color;
-            msgDiv.style.display = 'block';
-            setTimeout(() => {
-                msgDiv.style.display = 'none';
-            }, 3000);
-        }
-    }
-    
     // ========== LIGHTBOX ==========
-    function configurarLightboxEnGaleria(contenedor) {
+    function configurarLightbox(contenedor) {
         const imagenes = contenedor.querySelectorAll('.foto img');
         imagenes.forEach(img => {
             img.style.cursor = 'pointer';
@@ -686,8 +731,7 @@
                 e.stopPropagation();
                 const lightbox = document.getElementById('lightboxGlobal');
                 if (lightbox) {
-                    const lightboxImg = lightbox.querySelector('img');
-                    lightboxImg.src = img.src;
+                    lightbox.querySelector('img').src = img.src;
                     lightbox.style.display = 'flex';
                 }
             });
@@ -709,21 +753,29 @@
         document.body.appendChild(lightbox);
     }
     
-    // ========== MOSTRAR SECCIÓN ==========
-    function mostrarSeccion(id) {
-        document.querySelectorAll('.seccion').forEach(sec => sec.classList.remove('activa'));
-        document.getElementById(id).classList.add('activa');
-        localStorage.setItem('seccionActual', id);
-    }
-    
-    // ========== VERIFICAR MODO ADMIN ==========
+    // ========== ADMIN ==========
     function verificarModoAdmin() {
         const urlParams = new URLSearchParams(window.location.search);
         const clave = urlParams.get('admin');
         if (clave === 'miportafolio2024') {
             esAdmin = true;
             document.getElementById('adminPanel').classList.add('visible');
+            document.getElementById('adminVideoPanel').style.display = 'block';
         }
+    }
+    
+    function mostrarMensajeAdmin(mensaje, color) {
+        const msgDiv = document.getElementById('adminMensaje');
+        msgDiv.textContent = mensaje;
+        msgDiv.style.backgroundColor = color;
+        msgDiv.style.display = 'block';
+        setTimeout(() => msgDiv.style.display = 'none', 3000);
+    }
+    
+    function mostrarSeccion(id) {
+        document.querySelectorAll('.seccion').forEach(sec => sec.classList.remove('activa'));
+        document.getElementById(id).classList.add('activa');
+        localStorage.setItem('seccionActual', id);
     }
     
     function escapeHtml(str) {
@@ -736,11 +788,12 @@
         });
     }
     
-    // ========== INICIALIZAR ==========
+    // ========== INICIAR ==========
     function init() {
         verificarModoAdmin();
         cargarDatos();
         crearLightboxGlobal();
+        cargarVideoGuardado();
         
         const ultimaSeccion = localStorage.getItem('seccionActual');
         if (ultimaSeccion && ultimaSeccion !== 'inicio') {
