@@ -3,33 +3,605 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensaje enviado | Portafolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/estilo.css">
+    <title>Mi Portafolio | Artista Multidisciplinaria</title>
+    <style>
+        /* ===== TODOS LOS ESTILOS EN UN SOLO LUGAR ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .menu a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== MENÚ ===== */
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .menu a:hover {
+            color: #e67e22;
+        }
+
+        /* ===== SECCIONES ===== */
+        .seccion {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .seccion.activa {
+            display: block;
+        }
+
+        /* ===== GALERÍAS ===== */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .foto {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .foto:hover {
+            transform: translateY(-5px);
+        }
+
+        .foto img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            background-color: #f0f0f0;
+        }
+
+        .descripcion {
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            background: white;
+        }
+
+        .descripcion .titulo-obra {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .descripcion .tecnica {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* ===== SECCIONES ESPECIALES ===== */
+        .bloque-sesion {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 12px;
+        }
+
+        .bloque-sesion h3 {
+            color: #e67e22;
+            margin-top: 0;
+        }
+
+        /* ===== VIDEO ===== */
+        .video-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .video-container video {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* ===== SOBRE MÍ ===== */
+        .perfil-texto {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin: 2rem 0;
+            line-height: 1.8;
+        }
+
+        /* ===== CONTACTO ===== */
+        .contacto-info {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .contacto-info a {
+            color: #e67e22;
+            text-decoration: none;
+        }
+
+        .formulario {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .formulario input,
+        .formulario textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .formulario button {
+            background: #1a1a1a;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .formulario button:hover {
+            background: #e67e22;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #1a1a1a;
+            color: #aaa;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .menu {
+                gap: 0.8rem;
+            }
+            .menu a {
+                font-size: 0.85rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .galeria {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul class="menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="dibujo-ilustracion.html">Dibujo & Ilustración</a></li>
-                <li><a href="escultura.html">Escultura</a></li>
-                <li><a href="maquillaje.html">Maquillaje & Modelaje</a></li>
-                <li><a href="video.html">Edición de Video</a></li>
-                <li><a href="sobre-mi.html">Sobre mí</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main class="container">
-        <h1>¡Gracias por tu mensaje!</h1>
-        <p>Te responderé lo antes posible. Mientras tanto, puedes ver más de mi trabajo en Instagram.</p>
-        <p><a href="contacto.html">← Volver al contacto</a></p>
-    </main>
+<header>
+    <nav>
+        <ul class="menu">
+            <li><a onclick="mostrarSeccion('inicio')">Inicio</a></li>
+            <li><a onclick="mostrarSeccion('dibujo')">Dibujo & Ilustración</a></li>
+            <li><a onclick="mostrarSeccion('escultura')">Escultura</a></li>
+            <li><a onclick="mostrarSeccion('maquillaje')">Maquillaje & Modelaje</a></li>
+            <li><a onclick="mostrarSeccion('video')">Edición de Video</a></li>
+            <li><a onclick="mostrarSeccion('sobre')">Sobre mí</a></li>
+            <li><a onclick="mostrarSeccion('contacto')">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <footer>
-        <p>© 2024 - Todos los derechos reservados</p>
-    </footer>
+<main>
+    <!-- ==================== SECCIÓN INICIO ==================== -->
+    <div id="inicio" class="seccion activa">
+        <div class="container">
+            <h1>Artista Llanera Multidisciplinaria</h1>
+            <p>Dibujo, pinto, modeló, me maquillo, grabo y edito – todo para representarme a mí misma.</p>
+
+            <h2>Selección de obras</h2>
+            <div class="galeria">
+                <div class="foto">
+                    <img src="images/tradicional/ejemplo.jpg" alt="Dibujo tradicional" onerror="this.src='https://placehold.co/600x800?text=Dibujo+Tradicional'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Dibujo tradicional</div>
+                        <div class="tecnica">Acrílico y esfero</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/digital/ejemplo.png" alt="Ilustración digital" onerror="this.src='https://placehold.co/600x600?text=Ilustración+Digital'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Mi personaje</div>
+                        <div class="tecnica">Ilustración digital en Krita</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/escultura/chiguiro.jpg" alt="Chiguiro" onerror="this.src='https://placehold.co/600x500?text=Chiguiro'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Chiguiro</div>
+                        <div class="tecnica">Arcilla modelada</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/maquillaje/artistico.jpg" alt="Maquillaje artístico" onerror="this.src='https://placehold.co/600x600?text=Maquillaje'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Maquillaje artístico</div>
+                        <div class="tecnica">Sobre mí misma</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SECCIÓN DIBUJO E ILUSTRACIÓN ==================== -->
+    <div id="dibujo" class="seccion">
+        <div class="container">
+            <h1>Dibujo Tradicional</h1>
+            <div class="galeria">
+                <!-- ⚠️ TÚ DECIDES EL ORDEN: solo mueve estos bloques -->
+                <div class="foto">
+                    <img src="images/tradicional/obra1.jpg" alt="Acrílico con esfero" onerror="this.src='https://placehold.co/600x800?text=Acrílico+y+Esfero'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Sin título</div>
+                        <div class="tecnica">Acrílico y esfero sobre papel</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/tradicional/obra2.png" alt="Acuarela" onerror="this.src='https://placehold.co/600x700?text=Acuarela'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Exploración</div>
+                        <div class="tecnica">Acuarela</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/tradicional/obra3.jpg" alt="Lápiz" onerror="this.src='https://placehold.co/600x700?text=Dibujo+a+Lápiz'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Boceto</div>
+                        <div class="tecnica">Lápiz sobre papel</div>
+                    </div>
+                </div>
+                <!-- Copia y pega este bloque para más obras (hasta 10) -->
+            </div>
+
+            <h2>Ilustración Digital – Mi personaje</h2>
+            <div class="galeria">
+                <div class="foto">
+                    <img src="images/digital/personaje1.png" alt="Mi personaje" onerror="this.src='https://placehold.co/600x600?text=Mi+Personaje+1'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Personaje</div>
+                        <div class="tecnica">Krita – Digital</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/digital/personaje2.png" alt="Mi personaje 2" onerror="this.src='https://placehold.co/600x600?text=Mi+Personaje+2'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Esencia</div>
+                        <div class="tecnica">Krita – Digital</div>
+                    </div>
+                </div>
+                <!-- Agrega hasta 5 ilustraciones digitales -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SECCIÓN ESCULTURA ==================== -->
+    <div id="escultura" class="seccion">
+        <div class="container">
+            <h1>Escultura en Arcilla – Fauna Llanera</h1>
+            <p>Figuras inspiradas en mi cultura: chiguiro, águila arpía, mono araña, oso palmero, tucanes, caimanes, combreros, mono churuco.</p>
+            
+            <div class="galeria">
+                <div class="foto">
+                    <img src="images/escultura/chiguiro.jpg" alt="Chiguiro" onerror="this.src='https://placehold.co/600x500?text=Chiguiro'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Chiguiro</div>
+                        <div class="tecnica">Arcilla modelada a mano</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/escultura/aguila-arpia.jpg" alt="Águila Arpía" onerror="this.src='https://placehold.co/600x600?text=Águila+Arpía'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Águila Arpía</div>
+                        <div class="tecnica">Arcilla, pintura acrílica</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/escultura/mono-arana.jpg" alt="Mono Araña" onerror="this.src='https://placehold.co/600x600?text=Mono+Araña'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Mono Araña</div>
+                        <div class="tecnica">Arcilla de secado natural</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/escultura/oso-palmero.jpg" alt="Oso Palmero" onerror="this.src='https://placehold.co/600x600?text=Oso+Palmero'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Oso Palmero</div>
+                        <div class="tecnica">Arcilla</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/escultura/tucan.jpg" alt="Tucán" onerror="this.src='https://placehold.co/600x600?text=Tucán'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Tucán</div>
+                        <div class="tecnica">Arcilla y acrílico</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/escultura/caiman.jpg" alt="Caimán" onerror="this.src='https://placehold.co/600x400?text=Caimán'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Caimán</div>
+                        <div class="tecnica">Arcilla modelada</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/escultura/combrero.jpg" alt="Combrero" onerror="this.src='https://placehold.co/600x600?text=Combrero'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Combrero</div>
+                        <div class="tecnica">Arcilla</div>
+                    </div>
+                </div>
+                <div class="foto">
+                    <img src="images/escultura/mono-churuco.jpg" alt="Mono Churuco" onerror="this.src='https://placehold.co/600x600?text=Mono+Churuco'">
+                    <div class="descripcion">
+                        <div class="titulo-obra">Mono Churuco</div>
+                        <div class="tecnica">Arcilla</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SECCIÓN MAQUILLAJE Y MODELAJE ==================== -->
+    <div id="maquillaje" class="seccion">
+        <div class="container">
+            <h1>Maquillaje y Modelaje</h1>
+
+            <div class="bloque-sesion">
+                <h3>🎨 Maquillaje artístico – Sobre mí misma</h3>
+                <div class="galeria">
+                    <div class="foto">
+                        <img src="images/maquillaje/artistico1.jpg" alt="Maquillaje artístico" onerror="this.src='https://placehold.co/600x600?text=Maquillaje+Artístico+1'">
+                        <div class="descripcion">
+                            <div class="titulo-obra">Transformación</div>
+                            <div class="tecnica">Maquillaje artístico sobre mí</div>
+                        </div>
+                    </div>
+                    <div class="foto">
+                        <img src="images/maquillaje/artistico2.jpg" alt="Maquillaje artístico 2" onerror="this.src='https://placehold.co/600x600?text=Maquillaje+Artístico+2'">
+                        <div class="descripcion">
+                            <div class="titulo-obra">Color y textura</div>
+                            <div class="tecnica">Maquillaje artístico</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bloque-sesion">
+                <h3>👗 Genderless / Unlabelled – Sesión de moda</h3>
+                <div class="galeria">
+                    <div class="foto">
+                        <img src="images/maquillaje/genderless1.jpg" alt="Genderless" onerror="this.src='https://placehold.co/600x800?text=Genderless+1'">
+                        <div class="descripcion">
+                            <div class="titulo-obra">Genderless / Unlabelled</div>
+                            <div class="tecnica">Maquillaje y modelaje</div>
+                        </div>
+                    </div>
+                    <div class="foto">
+                        <img src="images/maquillaje/genderless2.jpg" alt="Genderless 2" onerror="this.src='https://placehold.co/600x800?text=Genderless+2'">
+                        <div class="descripcion">
+                            <div class="titulo-obra">Moda sin etiquetas</div>
+                            <div class="tecnica">Sesión fotográfica</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SECCIÓN EDICIÓN DE VIDEO ==================== -->
+    <div id="video" class="seccion">
+        <div class="container">
+            <h1>Edición de Video</h1>
+            
+            <div class="video-container">
+                <video controls poster="images/video-thumbnail.jpg">
+                    <source src="video/comercial-retencion.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video. 
+                    <a href="video/comercial-retencion.mp4">Descargar video</a>
+                </video>
+            </div>
+
+            <div class="perfil-texto">
+                <p><strong>Proyecto comercial pagado:</strong> Grabación y edición completa. Enfoque en retención de audiencia, ritmo dinámico y narrativa visual. Lo único que no realicé fue la grabación de voces.</p>
+                <p>Actualmente explorando edición de video artística. Disponible para proyectos de edición con enfoque narrativo o de retención.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SECCIÓN SOBRE MÍ ==================== -->
+    <div id="sobre" class="seccion">
+        <div class="container">
+            <h1>Sobre mí – Mi representación</h1>
+            
+            <div class="perfil-texto">
+                <p><strong>Me llamo [Tu nombre]</strong>. Soy artista llanera. Todo lo que hago –dibujar, pintar con acrílico y esfero, modelar arcilla, maquillarme, grabar y editar– es una forma de representarme a mí misma. No tengo un personaje ficticio: <strong>yo soy el personaje</strong>.</p>
+
+                <p>Mis esculturas hablan de mi tierra: el chiguiro, el águila arpía, el caimán, el combrero. Mis ilustraciones digitales y dibujos son mi esencia vivida y con color. Me maquillo para transformarme y para vestir marcas sin etiquetas. Y edito video como nuevo lenguaje.</p>
+
+                <p>Quiero ilustrar más maquillajes artísticos y seguir creciendo en edición. Pero hoy, este portafolio soy yo: sin filtros, sin personajes inventados.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SECCIÓN CONTACTO ==================== -->
+    <div id="contacto" class="seccion">
+        <div class="container">
+            <h1>Contacto</h1>
+
+            <div class="contacto-info">
+                <p>📧 <a href="mailto:tucorreo@ejemplo.com">tucorreo@ejemplo.com</a></p>
+                <p>📷 Instagram: <a href="https://instagram.com/tuusuario" target="_blank">@tusuario</a></p>
+            </div>
+
+            <form class="formulario" action="#" onsubmit="alert('Gracias por tu mensaje. Me pondré en contacto contigo pronto. Mientras tanto, escríbeme directamente a mi correo o Instagram.'); return false;">
+                <label>Nombre:</label>
+                <input type="text" name="nombre" required>
+
+                <label>Correo electrónico:</label>
+                <input type="email" name="email" required>
+
+                <label>Mensaje:</label>
+                <textarea name="mensaje" rows="5" required></textarea>
+
+                <button type="submit">Enviar mensaje</button>
+                <p style="font-size: 0.8rem; margin-top: 1rem;">💡 Por ahora esto es una demo. Para contactarme realmente, usa mi correo o Instagram.</p>
+            </form>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>© 2024 - Todos los derechos reservados</p>
+</footer>
+
+<script>
+    // ===== FUNCIÓN PARA CAMBIAR DE SECCIÓN =====
+    function mostrarSeccion(id) {
+        // Ocultar todas las secciones
+        var secciones = document.querySelectorAll('.seccion');
+        for (var i = 0; i < secciones.length; i++) {
+            secciones[i].classList.remove('activa');
+        }
+        // Mostrar la sección seleccionada
+        document.getElementById(id).classList.add('activa');
+        
+        // Guardar la sección actual en localStorage para recordarla
+        localStorage.setItem('seccionActual', id);
+    }
+
+    // ===== LIGHTBOX (ver imágenes en grande) =====
+    function crearLightbox() {
+        var lightbox = document.createElement('div');
+        lightbox.id = 'lightbox';
+        lightbox.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        `;
+        
+        var lightboxImg = document.createElement('img');
+        lightboxImg.style.cssText = `
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        `;
+        
+        lightbox.appendChild(lightboxImg);
+        document.body.appendChild(lightbox);
+        
+        lightbox.addEventListener('click', function() {
+            lightbox.style.display = 'none';
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                lightbox.style.display = 'none';
+            }
+        });
+        
+        function initLightbox() {
+            var imagenes = document.querySelectorAll('.foto img');
+            for (var i = 0; i < imagenes.length; i++) {
+                imagenes[i].style.cursor = 'pointer';
+                imagenes[i].addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    lightboxImg.src = this.src;
+                    lightbox.style.display = 'flex';
+                });
+            }
+        }
+        
+        initLightbox();
+    }
+    
+    // ===== CARGAR LA ÚLTIMA SECCIÓN VISITADA =====
+    var ultimaSeccion = localStorage.getItem('seccionActual');
+    if (ultimaSeccion && ultimaSeccion !== 'inicio') {
+        mostrarSeccion(ultimaSeccion);
+    }
+    
+    // Iniciar lightbox cuando todo esté cargado
+    window.addEventListener('load', crearLightbox);
+</script>
+
 </body>
 </html>
